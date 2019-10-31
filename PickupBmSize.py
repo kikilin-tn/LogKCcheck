@@ -3,13 +3,16 @@ import re
 log_lines = []
 new_lines = []
 
-pro = 0
 cnt1 = 0
 ch1w1 = []
 ch1w2 = []
 ch1time = []
-output = []
-cntw2 = 0
+
+cnt2 = 0
+ch2w1 = []
+ch2w2 = []
+ch2time = []
+
 filename = input('please input the file name:(ex.LG07_0520.txt)\n')
 with open(filename,'r') as f:
     for line in f:
@@ -23,26 +26,28 @@ with open(filename,'r') as f:
             log_lines.append(event[0:7])
 
     new_lines = log_lines[::-1]
-    #print(new_lines)
 
     for line in new_lines:
         if line[1] == 'PRO':
-            #if len(ch1time) <2:
-                #continue
-            #else:
-            #print(ch1time)
-            #print(ch1w1)
-            #print(ch1w2)
-
-            with open('beam width result.txt', 'a') as f:
-                f.writelines('KC Time:, ')
+            with open('beam_width_result.txt', 'a') as f:
+                f.writelines('CH1 KC Time:, ')
                 f.writelines(ch1time)
                 f.writelines('\n')
-                f.writelines('Width1:, ')
+                f.writelines('CH1 width1:, ')
                 f.writelines(ch1w1)
                 f.writelines('\n')
-                f.writelines('Width2:, ')
+                f.writelines('CH1 Width2:, ')
                 f.writelines(ch1w2)
+                f.writelines('\n')
+
+                f.writelines('CH2 KC Time:, ')
+                f.writelines(ch2time)
+                f.writelines('\n')
+                f.writelines('CH2 width1:, ')
+                f.writelines(ch2w1)
+                f.writelines('\n')
+                f.writelines('CH2 Width2:, ')
+                f.writelines(ch2w2)
                 f.writelines('\n')
                 #f.writelines('--------------------------------')
                 f.writelines('\n')
@@ -54,67 +59,27 @@ with open(filename,'r') as f:
             ch1w2 = []
             ch1time = []
 
+            ch2w1 = []
+            ch2w2 = []
+            ch2time = []
+
         elif line[1] == 'KC'and 'CH1' in line[3]:
             cnt1 += 1
-            width1 = line[5]+','
+            width = line[5]+','
             w1time = line[0]+','
             if cnt1 % 2 == 1:
                 ch1time.append(w1time)
-                ch1w1.append(width1)
+                ch1w1.append(width)
             elif cnt1 % 2 == 0:
-                ch1w2.append(width1)
-#-------------------------------------------------------------------------
-# with open('Test_LOG.txt','r') as f:
-#     for line in f:
-#         event=re.split(',|\t|\n',line)
-#
-#         if event[1] == 'PRO':
-#             #if len(ch1time) <2:
-#                 #continue
-#             #else:
-#             print(ch1time)
-#             print(ch1w1)
-#             print(ch1w2)
-#
-#             with open('beam width result.txt', 'a') as f:
-#                 f.writelines(ch1time)
-#                 f.writelines('\n')
-#                 f.writelines(ch1w1)
-#                 f.writelines('\n')
-#                 f.writelines(ch1w2)
-#                 f.writelines('\n')
-#                 f.writelines('--------------------------------')
-#                 f.writelines('\n')
-#                 f.writelines(event[3])
-#
-#             ch1w1 = []
-#             ch1w2 = []
-#             ch1time = []
-#             #print(ch1)
-#             #print('\n' + event[0] + ' ' + event[3]) #time and product name
-#
-#         elif event[1] == 'KC'and 'CH1' in event[3]:
-#             cnt1 += 1
-#             width1 = event[5]+','
-#             w1time = event[0]+','
-#             if cnt1 % 2 == 1:
-#                 #output.append(w1time)
-#                 ch1time.append(w1time)
-#                 ch1w1.append(width1)
-#             elif cnt1 % 2 == 0:
-#                 #output.append(width1)
-#                 ch1w2.append(width1)
+                ch1w2.append(width)
 
-        # elif event[1] == 'KC'and 'CH2' in event[3]:
-        #     width2 = event[5]
-        #     ch2.append(width2)
-
-        # elif event[1] == 'KC'and 'CH2' in event[3]:
-        #     ch2width = event[5]
-
-    #print(event)
-    #print(KClist1)
-        #KClist1.append(ch1width)
-# with open('beam_width_result.txt', 'w') as fout:
-#     fout.readlines(ch1time)
-#     fout.readlines(ch1w1)
+        elif line[1] == 'KC'and 'CH2' in line[3]:
+            cnt2 += 1
+            width = line[5]+','  #beam width
+            w1time = line[0]+','  #beam KC time
+            if cnt2 % 2 == 1:
+                ch2time.append(w1time)
+                ch2w1.append(width)
+            elif cnt2 % 2 == 0:
+                ch2w2.append(width)
+print('file is output to the file: "beam_width_result.txt", please check it.')
