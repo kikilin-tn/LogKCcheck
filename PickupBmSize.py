@@ -49,7 +49,6 @@ with open(filename,'r') as f:
                 f.writelines('CH2 Width2:, ')
                 f.writelines(ch2w2)
                 f.writelines('\n')
-                #f.writelines('--------------------------------')
                 f.writelines('\n')
                 f.writelines('Product ID:, ')
                 f.writelines(line[0] + ' ' + line[3])
@@ -86,24 +85,4 @@ with open(filename,'r') as f:
                 ch2w1.append(width)
             elif cnt2 % 2 == 0:
                 ch2w2.append(width)
-
-        # elif line[1] == 'KC'and 'CH1' in line[3]:
-        #     cnt1 += 1
-        #     width = line[5]+','
-        #     w1time = line[0]+','
-        #     if cnt1 % 2 == 1:
-        #         ch1time.append(w1time)
-        #         ch1w1.append(width)
-        #     elif cnt1 % 2 == 0:
-        #         ch1w2.append(width)
-
-        # elif line[1] == 'KC'and 'CH2' in line[3]:
-        #     cnt2 += 1
-        #     width = line[5]+','  #beam width
-        #     w1time = line[0]+','  #beam KC time
-        #     if cnt2 % 2 == 1:
-        #         ch2time.append(w1time)
-        #         ch2w1.append(width)
-        #     elif cnt2 % 2 == 0:
-        #         ch2w2.append(width)
 print('file is output to the file: "beam_width_result.txt", please check it.')
