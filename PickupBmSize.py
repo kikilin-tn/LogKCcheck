@@ -6,7 +6,8 @@ import os
 log_lines = []
 filename = input('please input the file name:(ex.LG07_0520.txt)\n')
 #time.sleep(30)
-with open(filename,'r') as f:
+with open(filename,'r',encoding='latin1') as f:
+#with open(filename,'r') as f:
     for line in f:
         event=re.split(',|\t|\n',line)
 
