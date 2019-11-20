@@ -36,8 +36,13 @@ ch2w1lines = []
 ch2w2lines = []
 err2 = []
 
+a = input('pls input your device name (ex.LG06-SN100-D-ASE-325-90-G-01)\n')
+
 for line in new_lines:
-    if line[1] == 'PRO':
+    if line[1] == 'PRO' and line[3] == a:
+        print(line)
+    #if line[1] == 'PRO' and line[3] == a:
+        #print(a)
         with open('beam_width_result.csv', 'a') as f:
 
             f.writelines('CH1 KC Time:,')
