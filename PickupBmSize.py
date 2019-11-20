@@ -38,11 +38,9 @@ err2 = []
 
 a = input('pls input your device name (ex.LG06-SN100-D-ASE-325-90-G-01)\n')
 
+
 for line in new_lines:
-    if line[1] == 'PRO' and line[3] == a:
-        print(line)
-    #if line[1] == 'PRO' and line[3] == a:
-        #print(a)
+    if line[1] == 'PRO' and a == line[3]:
         with open('beam_width_result.csv', 'a') as f:
 
             f.writelines('CH1 KC Time:,')
@@ -102,7 +100,66 @@ for line in new_lines:
             ch2w1lines = []
             ch2w2lines = []
             err2 = []
+    elif line[1] == 'PRO' and a == "":
+        with open('beam_width_result.csv', 'a') as f:
 
+            f.writelines('CH1 KC Time:,')
+            f.writelines(ch1time)
+            f.writelines('\n')
+            f.writelines('CH1 beam1 width:,')
+            f.writelines(ch1w1)
+            f.writelines('\n')
+            f.writelines('CH1 beam2 width:,')
+            f.writelines(ch1w2)
+            f.writelines('\n')
+            f.writelines('CH1 beam1 line:,')
+            f.writelines(ch1w1lines)
+            f.writelines('\n')
+            f.writelines('CH1 beam2 line:,')
+            f.writelines(ch1w2lines)
+            f.writelines('\n')
+            f.writelines('KC error:,')
+            f.writelines(err1)
+            f.writelines('\n')
+
+            f.writelines('CH2 KC Time:,')
+            f.writelines(ch2time)
+            f.writelines('\n')
+            f.writelines('CH2 beam1 width:,')
+            f.writelines(ch2w1)
+            f.writelines('\n')
+            f.writelines('CH2 beam2 width:,')
+            f.writelines(ch2w2)
+            f.writelines('\n')
+            f.writelines('Ch2 beam1 line:,')
+            f.writelines(ch2w1lines)
+            f.writelines('\n')
+            f.writelines('CH2 beam2 line:,')
+            f.writelines(ch2w2lines)
+            f.writelines('\n')
+            f.writelines('KC error:,')
+            f.writelines(err2)
+            f.writelines('\n')
+            f.writelines('\n')
+            f.writelines('Product ID:,')
+            f.writelines(line[0] + ' ' + line[3])
+            f.writelines('\n')
+
+            cnt1 = 0
+            ch1w1 = []
+            ch1w2 = []
+            ch1time = []
+            ch1w1lines = []
+            ch1w2lines = []
+            err1 = []
+
+            cnt2 = 0
+            ch2w1 = []
+            ch2w2 = []
+            ch2time = []
+            ch2w1lines = []
+            ch2w2lines = []
+            err2 = []
 
     elif line[1] == 'KC'and 'CH1' in line[3]:
         if 'NG' in line[3]:
